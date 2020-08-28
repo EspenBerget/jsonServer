@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JSON server project</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <h1>Welcome</h1>
+        <p>Data format Example</p>
+        <p>{"ide": "<some IDE>", "idea": "<some idea>"}</p>
+        <br>
+        <p>API</p>
+        <ul>
+            <li><span>POST /add</span> to add data. Expects a json body of the form specified earlier</li>
+            <li><span>DELETE /delete/{id}</span> to delete an item</li>
+            <li><span>GET /get/{id}</span> to get an item</li>
+            <li><span>GET /all</span> to get all items</li>
+        </ul>
+    </body>
+    <style>
+        body {
+            margin: "auto" 0;
+            max-width: 50em;
+        }
+        li {
+            color: gray;
+        }
+        li span {
+            color: black;
+            font-style: bold;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        h1 {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: rgb(116, 4, 4);
+        }
+    </style>
+</html>
