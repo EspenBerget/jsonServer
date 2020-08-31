@@ -26,3 +26,4 @@ This struct is also used to communicate with the sqlite3 database, which give th
 * Add test to handlers
 * Add form validation
 * Add TLS support
+* Add update handler in server.go and function in db.go
