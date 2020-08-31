@@ -46,7 +46,6 @@ func jsonGetAll(w http.ResponseWriter, r *http.Request) {
 }
 
 func jsonAdd(w http.ResponseWriter, r *http.Request) {
-	s := Suggestion{}
 	b := make([]byte, 1024)
 	n, err := r.Body.Read(b)
 	if err != io.EOF {
@@ -54,6 +53,7 @@ func jsonAdd(w http.ResponseWriter, r *http.Request) {
 	}
 
 	b = b[:n]
+	s := Suggestion{}
 	checkInternalError(json.Unmarshal(b, &s))
 
 	id, err := add(db, s)
