@@ -56,10 +56,19 @@ func jsonAdd(w http.ResponseWriter, r *http.Request) {
 	s := Suggestion{}
 	checkInternalError(json.Unmarshal(b, &s))
 
+	if s.Idea == "" || s.IDE == "" {
+		http.Error(w, "Poor form!", http.StatusBadRequest)
+		return
+	}
+
 	id, err := add(db, s)
 	checkInternalError(err)
+	s.ID = id
 
-	fmt.Fprintf(w, "Added idea '%s' for IDE '%s' with ID %d", s.Idea, s.IDE, id)
+	b, err = json.Marshal(s)
+	checkInternalError(err)
+
+	fmt.Fprintf(w, string(b))
 }
 
 func jsonDelete(w http.ResponseWriter, r *http.Request) {

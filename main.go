@@ -21,4 +21,6 @@ func main() {
 	r.HandleFunc("/delete/{id:[0-9]+}", jsonDelete).Methods("DELETE")
 
 	log.Fatal(http.ListenAndServe(":9854", r))
+
+	db.Close()
 }
