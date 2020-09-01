@@ -23,6 +23,7 @@ func main() {
 	r.HandleFunc("/get/{id:[0-9]+}", jsonGetID).Methods("GET")
 	r.HandleFunc("/add", jsonAdd).Methods("POST")
 	r.HandleFunc("/delete/{id:[0-9]+}", jsonDelete).Methods("DELETE")
+	r.HandleFunc("/update/{id:[0-9]+}", jsonUpdate).Methods("PUT")
 
 	fmt.Println("Server startet on localhost:9854")
 	if *tls {

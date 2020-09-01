@@ -15,5 +15,6 @@ func TestMain(m *testing.M) {
 	if err != nil {
 		log.Printf("Failed to delete database '%s' after tests\n", database)
 	}
+	db.Close()
 	os.Exit(code)
 }

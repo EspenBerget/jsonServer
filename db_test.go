@@ -45,3 +45,19 @@ func TestGetAll(t *testing.T) {
 		t.Errorf("getAll failure: %v", err)
 	}
 }
+
+func TestUpdate(t *testing.T) {
+	s := NewSuggestion("update", "this is an update")
+	s.ID = 2
+	err := update(db, s)
+	if err != nil {
+		t.Errorf("update failure %v", err)
+	}
+	a, err := getID(db, 2)
+	if err != nil {
+		t.Errorf("update failure while getting updated value. Error: %v", err)
+	}
+	if a.ID != s.ID || a.IDE != s.IDE || a.Idea != s.Idea {
+		t.Error("Updated value not the same as input value")
+	}
+}

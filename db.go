@@ -89,4 +89,20 @@ func delete(db *sql.DB, id int64) error {
 	return nil
 }
 
-// TODO update
+func update(db *sql.DB, s Suggestion) error {
+	stmt, err := db.Prepare(
+		`UPDATE ideas 
+		 SET ide=?,
+			 idea=?
+		 WHERE id=?`)
+	if err != nil {
+		log.Println("UPDATE ERROR:", err)
+		return err
+	}
+	_, err = stmt.Exec(s.IDE, s.Idea, s.ID)
+	if err != nil {
+		log.Println("UPDATE ERROR:", err)
+		return err
+	}
+	return nil
+}

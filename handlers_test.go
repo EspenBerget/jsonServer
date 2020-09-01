@@ -70,7 +70,7 @@ func TestJsonDelete(t *testing.T) {
 
 	rr := httptest.NewRecorder()
 	router := mux.NewRouter()
-	router.HandleFunc("/delete/{id:[0-9]+}", jsonDelete)
+	router.HandleFunc("/delete/{id:[0-9]+}", jsonDelete).Methods("DELETE")
 	router.ServeHTTP(rr, req)
 
 	if status := rr.Code; status != http.StatusOK {
@@ -78,6 +78,31 @@ func TestJsonDelete(t *testing.T) {
 	}
 
 	expected := "Id 5 deleted"
+	if rr.Body.String() != expected {
+		t.Errorf("Wrong body returned: want %v got %v", expected, rr.Body.String())
+	}
+}
+
+func TestJsonUpdate(t *testing.T) {
+	jsonValue := `
+		{"ide": "update",
+		 "idea": "this is an update"
+		}	
+	`
+	req, err := http.NewRequest("PUT", "/update/2", strings.NewReader(jsonValue))
+	if err != nil {
+		t.Fatal(err)
+	}
+	rr := httptest.NewRecorder()
+	router := mux.NewRouter()
+	router.HandleFunc("/update/{id:[0-9]+}", jsonUpdate).Methods("PUT")
+	router.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("Wrong status code: want %v got %v", http.StatusOK, status)
+	}
+
+	expected := "Id 2 updated"
 	if rr.Body.String() != expected {
 		t.Errorf("Wrong body returned: want %v got %v", expected, rr.Body.String())
 	}

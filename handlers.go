@@ -81,3 +81,31 @@ func jsonDelete(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Fprintf(w, "Id %d deleted", id)
 }
+
+func jsonUpdate(w http.ResponseWriter, r *http.Request) {
+	vs := mux.Vars(r)
+	idString := vs["id"]
+	id, err := strconv.Atoi(idString)
+	checkInternalError(err)
+
+	b := make([]byte, 1024)
+	n, err := r.Body.Read(b)
+	if err != io.EOF {
+		checkInternalError(err)
+	}
+
+	b = b[:n]
+	s := Suggestion{}
+	checkInternalError(json.Unmarshal(b, &s))
+
+	if s.Idea == "" || s.IDE == "" {
+		http.Error(w, "Poor form!", http.StatusBadRequest)
+		return
+	}
+
+	s.ID = int64(id)
+
+	checkInternalError(update(db, s))
+
+	fmt.Fprintf(w, "Id %d updated", id)
+}

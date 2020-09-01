@@ -1,7 +1,7 @@
 # JSON server in Go
 
 ## Task
-Learn about Go's http capabilities by building a simple API.
+Learn about Go's http(s) capabilities by building a simple API.
 
 ## About
 An API where users can submit ideas for new features for IDEs. The submission is a POST
@@ -24,7 +24,6 @@ This struct is also used to communicate with the sqlite3 database, which give th
 
 ### TODO
 * Maybe add user auth with JWT
-* Add update handler in handlers.go and function in db.go
 * Need more tests!
 
 ### Notes
