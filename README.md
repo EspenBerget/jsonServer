@@ -23,5 +23,9 @@ Yeah, I'm having some fun here ;)
 This struct is also used to communicate with the sqlite3 database, which give the program persistent storage.
 
 ### TODO
-* Add TLS support
+* Maybe add user auth with JWT
 * Add update handler in handlers.go and function in db.go
+* Need more tests!
+
+### Notes
+* TLS works, but users must provide trusted cert.pem and key.pem.

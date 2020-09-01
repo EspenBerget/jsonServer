@@ -2,6 +2,8 @@ package main
 
 import (
 	"database/sql"
+	"flag"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -11,7 +13,9 @@ import (
 var db *sql.DB
 
 func main() {
-	db = connect("./ideas_test1.db")
+	tls := flag.Bool("s", false, "use TLS")
+	flag.Parse()
+	db = connect("./ideas.db")
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", index)
@@ -20,7 +24,12 @@ func main() {
 	r.HandleFunc("/add", jsonAdd).Methods("POST")
 	r.HandleFunc("/delete/{id:[0-9]+}", jsonDelete).Methods("DELETE")
 
-	log.Fatal(http.ListenAndServe(":9854", r))
+	fmt.Println("Server startet on localhost:9854")
+	if *tls {
+		log.Fatal(http.ListenAndServeTLS(":9854", "cert.pem", "key.pem", r))
+	} else {
+		log.Fatal(http.ListenAndServe(":9854", r))
+	}
 
 	db.Close()
 }
