@@ -23,8 +23,6 @@ Yeah, I'm having some fun here ;)
 This struct is also used to communicate with the sqlite3 database, which give the program persistent storage.
 
 ### TODO
-* Add test to handlers
-* Add form validation
 * Add TLS support
 * Add update handler in handlers.go and function in db.go
 

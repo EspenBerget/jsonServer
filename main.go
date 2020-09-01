@@ -11,7 +11,7 @@ import (
 var db *sql.DB
 
 func main() {
-	db = connect("./ideas.db")
+	db = connect("./ideas_test1.db")
 
 	r := mux.NewRouter()
 	r.HandleFunc("/", index)

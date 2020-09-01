@@ -12,6 +12,19 @@ func connect(name string) *sql.DB {
 	if err != nil {
 		log.Fatal("Could not open db.")
 	}
+	stmt, err := conn.Prepare(
+		`CREATE TABLE IF NOT EXISTS ideas (
+			id INTEGER PRIMARY KEY,
+			ide TEXT NOT NULL,
+			idea TEXT NOT NULL
+		)`)
+	if err != nil {
+		log.Fatal("MAKE STATEMENT: ", err)
+	}
+	_, err = stmt.Exec()
+	if err != nil {
+		log.Fatal("EXECUTE STATEMENT: ", err)
+	}
 
 	return conn
 }
