@@ -25,6 +25,3 @@ This struct is also used to communicate with the sqlite3 database, which give th
 ### TODO
 * Add TLS support
 * Add update handler in handlers.go and function in db.go
-
-### Problem
-* Have to remember to clean test_ideas.db from time to time or it gets bloated.

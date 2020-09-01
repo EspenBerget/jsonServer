@@ -9,10 +9,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func init() {
-	db = connect("./test_ideas.db")
-}
-
 func TestJsonGetAll(t *testing.T) {
 	req, err := http.NewRequest("GET", "/", nil)
 	if err != nil {

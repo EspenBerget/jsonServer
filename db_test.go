@@ -4,10 +4,6 @@ import (
 	"testing"
 )
 
-func init() {
-	db = connect("./test_ideas.db")
-}
-
 func TestAdd(t *testing.T) {
 	s := NewSuggestion("vscode", "purescript support")
 	_, err := add(db, s)
